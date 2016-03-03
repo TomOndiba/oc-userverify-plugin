@@ -1,0 +1,18 @@
+fields:
+  activated:
+    span: left
+    type: switch
+    label: uxms.userverify::lang.activated.title
+    comment: uxms.userverify::lang.activated.desc
+
+  app_id:
+    span: left
+    type: text
+    label: uxms.userverify::lang.app_id.title
+    comment: uxms.userverify::lang.app_id.desc
+
+  access_token:
+    span: right
+    type: text
+    label: uxms.userverify::lang.access_token.title
+    comment: uxms.userverify::lang.access_token.desc

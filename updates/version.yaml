@@ -1,0 +1,5 @@
+1.0.0:
+  - Plugin Init
+1.0.1:
+  - Added user table columns
+  - add_users_columns.php

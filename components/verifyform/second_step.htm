@@ -1,0 +1,30 @@
+<div id="onSubmitCaller" style="text-align: center; font-size: 16px; display: none">
+    {{ translate.willcall }} "<strong><span class="phone-number">+{{ mobile }}</span></strong>"
+    <br>
+    {{ translate.donotanswer }}
+    <br>
+    {{ translate.lastfive }}
+    <br>
+    <form data-request="VerifyForm::onSubmitCaller" 
+        data-request-success="verifyStatus(data)" 
+        id="onSubmitCallerForm" 
+        action="" 
+        method="post">
+        <div class="form-group clearfix">
+            <input 
+                type="number" 
+                max="99999" 
+                name="lastfive" 
+                id="lastfive" 
+                class="form-control" 
+                style="width: 25%; display: inline-block" 
+                placeholder="{{ translate.placeholder }}" 
+                required>
+        </div>
+        <div class="form-group clearfix">
+            <button id="onSubmitCallerSubmit" type="submit" name="onSubmitCallerSubmit" class="btn btn-primary">
+                <span>{{ translate.verify }}</span>
+            </button>
+        </div>
+    </form>
+</div>
