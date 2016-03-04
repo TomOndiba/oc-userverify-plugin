@@ -8,7 +8,7 @@ class AddUsersColumns extends Migration {
 	public function up()
     {
 		Schema::table('users', function($table) {
-			$table->timestamp('userverify_dateverified');
+			$table->timestamp('userverify_dateverified')->nullable();
 			$table->string('userverify_callerphone')->nullable();
         });
 	}

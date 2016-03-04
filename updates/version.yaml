@@ -3,6 +3,5 @@
 1.0.1:
   - Added user table columns
   - add_users_columns.php
-1.0.2:
-  - Column nullable fixed
-  - make_userverify_dateverified_null.php
+1.0.2: Added userverify_dateverified as date
+1.0.3: Added timestamps
