@@ -3,7 +3,7 @@
 return [
     'app' => [
         'name'          => 'Verify with Call',
-        'desc'          => 'Prevents page access for unverified users and prompts to verify with a missed phone call by using Cognalys API.',
+        'desc'          => 'Prevents front-end page access for unverified users and prompts to verify with a missed phone call by using Cognalys API.',
         'setting_desc'  => 'Configure Cognalys.com API Credentials',
         'menu_label'    => 'Verify with Call'
     ],
