@@ -28,6 +28,10 @@ return [
         'redirect'  => [
             'title' => 'Redirect to',
             'desc'  => 'Select page for redirecting if user not verified yet'
+        ],
+        'redirectlogin'  => [
+            'title' => 'Redirect to Login',
+            'desc'  => 'Select page for redirecting if there is not logged in user yet'
         ]
     ],
     'verifycomponent' => [
