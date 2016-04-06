@@ -5,3 +5,4 @@
   - add_users_columns.php
 1.0.2: Added userverify_dateverified as date
 1.0.3: Added timestamps
+1.0.4: Added redirect when user not present

@@ -62,18 +62,16 @@ class VerifyForm extends ComponentBase
 
         // Abort if plugin active and user not logged in
         if (Configs::get('activated') && !Auth::getUser()) {
-            if ($redirectUnauthorizedTo) {
+            if ($redirectUnauthorizedTo)
                 return Redirect::to($redirectUnauthorizedTo);
-            }
 
             App::abort(401, 'Unauthorized');
         }
 
         // If Cognalys API settings not configured, abort..
         if (!Configs::get('app_id') || !Configs::get('access_token')) {
-            if ($redirectUnauthorizedTo) {
+            if ($redirectUnauthorizedTo)
                 return Redirect::to($redirectUnauthorizedTo);
-            }
 
             App::abort(401, 'Unauthorized');
         }
@@ -190,7 +188,7 @@ class VerifyForm extends ComponentBase
         if ($secondResponse['status'] == 'success') {
             $user = Auth::getUser();
             $user->userverify_dateverified = Carbon::now();
-            $user->userverify_mobile = $secondResponse['mobile'];
+            $user->mobile = $secondResponse['mobile'];
             $user->userverify_callerphone = $otp;
 
             $user->save();

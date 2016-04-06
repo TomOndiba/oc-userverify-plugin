@@ -59,13 +59,8 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
-        if (Configs::get('activated') == null) {
+        if (Configs::get('activated') == null)
             Configs::set('activated', '0');
-        }
-
-        User::extend(function($model) {
-            $model->dates = ['userverify_dateverified'];
-        });
 
         Event::listen('backend.form.extendFields', function($widget) 
         {
@@ -73,18 +68,11 @@ class Plugin extends PluginBase
             if (!$widget->model instanceof \RainLab\User\Models\User) return;
 
             $widget->addFields([
-                'userverify_mobile' => [
-                    'label' => 'Mobile Phone',
-                    'tab'   => 'Verification',
-                    'type'  => 'text'
-                ]
-            ], 'primary');
-
-            $widget->addFields([
                 'userverify_dateverified' => [
                     'label' => 'Verified Date',
                     'tab'   => 'Verification',
-                    'type'  => 'datepicker'
+                    'type'  => 'datepicker',
+                    'default' => '0000:00:00 00:00:00'
                 ]
             ], 'primary');
 

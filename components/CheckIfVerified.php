@@ -12,6 +12,7 @@ class CheckIfVerified extends ComponentBase
 {
     private $user;
     private $redirectTo;
+    private $redirectToLogin;
 
     public function componentDetails()
     {
@@ -27,6 +28,11 @@ class CheckIfVerified extends ComponentBase
             'redirect' => [
                 'title'       => 'uxms.userverify::lang.checkcomponent.redirect.title',
                 'description' => 'uxms.userverify::lang.checkcomponent.redirect.desc',
+                'type'        => 'dropdown'
+            ],
+            'redirectlogin' => [
+                'title'       => 'uxms.userverify::lang.checkcomponent.redirectlogin.title',
+                'description' => 'uxms.userverify::lang.checkcomponent.redirectlogin.desc',
                 'type'        => 'dropdown'
             ]
         ];
@@ -44,6 +50,11 @@ class CheckIfVerified extends ComponentBase
         return $webpageOpts;
     }
 
+    public function getRedirectloginOptions()
+    {
+        return $this->getRedirectOptions();
+    }
+
     /**
      * Starter method of the component.
      *
@@ -53,16 +64,17 @@ class CheckIfVerified extends ComponentBase
     {
         $this->user = Auth::getUser();
         $this->redirectTo = addslashes($this->property('redirect'));
+        $this->redirectToLogin = addslashes($this->property('redirectlogin'));
 
         // TODO: Add response information
-        if (Session::get('verify_status')) {
-            // var_dump(Session::get('verify_status'));
+        if (Session::get('verify_status'))
             Session::forget('verify_status');
-        }
 
-        if (Configs::get('activated') && $this->user) {
+        if (!$this->user)
+            return $this->redirectToLoginPage();
+
+        if (Configs::get('activated') && $this->user)
             return $this->isUserVerified();
-        }
     }
 
     /**
@@ -72,9 +84,10 @@ class CheckIfVerified extends ComponentBase
      */
     public function isUserVerified()
     {
-        if ($this->user->userverify_dateverified <= 0) {
+        if ($this->user->userverify_dateverified <= 0)
             return $this->redirectToFormPage();
-        }
+
+        return true;
     }
 
     /**
@@ -86,6 +99,17 @@ class CheckIfVerified extends ComponentBase
     {
         Session::put('return_page', $this->page->url);
         return Redirect::to($this->redirectTo);
+    }
+
+    /**
+     * [redirectToLoginPage description]
+     * 
+     * @return [type] [description]
+     */
+    public function redirectToLoginPage()
+    {
+        Session::put('return_page', $this->page->url);
+        return Redirect::to($this->redirectToLogin);
     }
 
 }
