@@ -91,8 +91,6 @@ class CheckIfVerified extends ComponentBase
             $this->redirectToFormPage();
             $this->redirectToFormPageJS();
         }
-
-        return true;
     }
 
     /**

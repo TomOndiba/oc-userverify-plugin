@@ -165,7 +165,7 @@ class VerifyForm extends ComponentBase
     {
         $app_id = Configs::get('app_id');
         $access_token = Configs::get('access_token');
-        $firstResponse = Session::get('first_response');
+        $firstResponse = Session::get('firstResponse');
 
         $lastFive = intval(post('lastfive'));
         $otp = $firstResponse['otp_start'].$lastFive;
