@@ -87,8 +87,10 @@ class CheckIfVerified extends ComponentBase
      */
     public function isUserVerified()
     {
-        if ($this->user->userverify_dateverified <= 0)
-            return $this->redirectToFormPage();
+        if ($this->user->userverify_dateverified <= 0) {
+            $this->redirectToFormPage();
+            $this->redirectToFormPageJS();
+        }
 
         return true;
     }
@@ -102,6 +104,19 @@ class CheckIfVerified extends ComponentBase
     {
         Session::put('return_page', $this->page->url);
         return Redirect::to($this->redirectTo);
+    }
+
+    /**
+     * [redirectToFormPageJS description]
+     * 
+     * @return [type] [description]
+     */
+    public function redirectToFormPageJS()
+    {
+        Session::put('return_page', $this->page->url);
+
+        $formPageUrl = URL::to($this->redirectTo);
+        echo '<script>window.location = "'.$formPageUrl.'";</script>';
     }
 
     /**

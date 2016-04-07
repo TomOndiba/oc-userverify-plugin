@@ -7,3 +7,4 @@
 1.0.3: Added timestamps
 1.0.4: Added redirect when user not present
 1.0.5: Added script redirect for partials
+1.0.6: Added redirect for form page
