@@ -1,5 +1,6 @@
 <?php namespace Uxms\Userverify\Components;
 
+use URL;
 use Lang;
 use Auth;
 use Session;
@@ -70,8 +71,10 @@ class CheckIfVerified extends ComponentBase
         if (Session::get('verify_status'))
             Session::forget('verify_status');
 
-        if (!$this->user)
-            return $this->redirectToLoginPage();
+        if (!$this->user) {
+            $this->redirectToLoginPage();
+            $this->redirectToLoginPageWithJS();
+        }
 
         if (Configs::get('activated') && $this->user)
             return $this->isUserVerified();
@@ -110,6 +113,19 @@ class CheckIfVerified extends ComponentBase
     {
         Session::put('return_page', $this->page->url);
         return Redirect::to($this->redirectToLogin);
+    }
+
+    /**
+     * [redirectToLoginPageWithJS description]
+     * 
+     * @return [type] [description]
+     */
+    public function redirectToLoginPageWithJS()
+    {
+        Session::put('return_page', $this->page->url);
+
+        $loginPageUrl = URL::to($this->redirectToLogin);
+        echo '<script>window.location = "'.$loginPageUrl.'";</script>';
     }
 
 }
